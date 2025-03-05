@@ -12,7 +12,6 @@ load_dotenv(find_dotenv())
 client = openai.OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
 llm_model = "gpt-4o-mini"
-
 chat = ChatOpenAI(temperature=0.0, model=llm_model)
 
 email_response = """
@@ -72,7 +71,7 @@ messages = prompt_template.format_messages(email=email_response)
 # We can use LangChain's Parser instead and it guarantees (99% of the time) that we will get the desired format ##
 
 # ----------------- LangChain Parsers ----------------- #
-from langchain.output_parsers import ResponseSchema  # allows us to create the instructions ofwhat fields we want to extract along with their formats
+from langchain.output_parsers import ResponseSchema  # allows us to create the instructions of what fields we want to extract along with their formats
 from langchain.output_parsers import StructuredOutputParser  # actual output parsers
 
 leave_time_schema = ResponseSchema(name="leave_time",
@@ -97,7 +96,6 @@ response_schema = [
 
 # Setup the output parser
 output_parser = StructuredOutputParser.from_response_schemas(response_schema)
-
 format_instructions = output_parser.get_format_instructions()
 
 print(format_instructions)
